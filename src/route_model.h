@@ -21,6 +21,11 @@ class RouteModel : public Model {
         bool visited = false;
         std::vector<Node*> neighbors;
 
+        // create a func to return the euclidean distance btw 2 Nodes
+        float distance(Node) const; // this method shouldn't change the object being passed
+                                    // so one can make it a "const" method by adding "const"
+                                    // AFTER the function name.
+
       private:
         // Add private Node variables and methods here.
         int index;
