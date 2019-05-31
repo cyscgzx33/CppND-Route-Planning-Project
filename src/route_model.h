@@ -25,11 +25,15 @@ class RouteModel : public Model {
         float distance(Node) const; // this method shouldn't change the object being passed
                                     // so one can make it a "const" method by adding "const"
                                     // AFTER the function name.
+        void FindNeighbors();
 
       private:
         // Add private Node variables and methods here.
         int index;
         RouteModel* parent_model = nullptr;
+
+        Node* FindNeighbor(std::vector<int>);
+        
     };
     
     // Add public RouteModel variables and methods here.
@@ -37,8 +41,9 @@ class RouteModel : public Model {
     std::vector<Node> path; // This variable will eventually store the path that is found by the A* search.
     std::vector<Node>& SNodes() { return m_Nodes; }
 
-    std::unordered_map< int, std::vector<const Model::Road*> >& GetNodeToRoadMap() { return node_to_road };
-
+    std::unordered_map< int, std::vector<const Model::Road*> >& GetNodeToRoadMap() { return node_to_road; }
+    RouteModel::Node& FindClosestNode(float, float); // No need to specify RouteModel::
+    
   private:
     // Add private RouteModel variables and methods here.
     std::vector<Node> m_Nodes;
